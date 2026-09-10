@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Zerogame — ouça, descubra e baixe músicas."
+    >
+
+    <title>ZEROGAME</title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         CABEÇALHO
+    ====================================================== -->
+
+    <header class="site-header">
+
+        <div class="container header-content">
+
+            <a href="index.html" class="logo">
+
+                <span class="logo-icon">
+                    ♪
+                </span>
+
+                <span>
+                    Zero<span class="logo-highlight">Game</span>
+                </span>
+
+            </a>
+
+
+            <nav class="main-nav">
+
+                <a
+                    href="index.html"
+                    class="active"
+                >
+                    Início
+                </a>
+
+                <a href="#catalogo">
+                    Músicas
+                </a>
+
+                <a href="#spotify">
+                    Spotify
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         BANNER PRINCIPAL
+    ====================================================== -->
+
+    <section class="hero-banner">
+
+
+        <div
+            class="hero-slide active"
+            style="background-image: url('capas/banner/banner-01.png');"
+        ></div>
+
+
+        <div
+            class="hero-slide"
+            style="background-image: url('capas/banner/banner-02.jpg');"
+        ></div>
+
+
+        <div
+            class="hero-slide"
+            style="background-image: url('capas/banner/banner-03.jpg');"
+        ></div>
+
+         <div
+                class="hero-slide"
+                style="background-image: url('capas/banner/banner-04.png');"
+        ></div>
+
+        <!--
+            PARA ADICIONAR MAIS BANNERS:
+
+            <div
+                class="hero-slide"
+                style="background-image: url('capas/banner/banner-04.jpg');"
+            ></div>
+
+            <div
+                class="hero-slide"
+                style="background-image: url('capas/banner/banner-05.jpg');"
+            ></div>
+
+            Não precisas adicionar os indicadores manualmente.
+            O JavaScript cria-os automaticamente.
+        -->
+
+
+        <div class="hero-overlay"></div>
+
+
+        <div class="container hero-content">
+
+            <div class="hero-text">
+
+                <span class="hero-label">
+                    BLOG MUSICAL
+                </span>
+
+
+                <h1>
+                    Música para ouvir.
+                    <br>
+                    Música para descobrir.
+                </h1>
+
+
+                <p>
+                    Descubra novas músicas, artistas e sons.
+                    Ouça online e baixe suas músicas favoritas.
+                </p>
+
+
+                <a
+                    href="#catalogo"
+                    class="hero-button"
+                >
+                    🎧 OUVIR MÚSICAS
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Indicadores criados pelo JavaScript -->
+
+        <div
+            class="hero-dots"
+            id="heroDots"
+        ></div>
+
+
+        <!-- Setas -->
+
+        <button
+            class="hero-arrow hero-prev"
+            id="heroPrev"
+            aria-label="Imagem anterior"
+        >
+            ‹
+        </button>
+
+
+        <button
+            class="hero-arrow hero-next"
+            id="heroNext"
+            aria-label="Próxima imagem"
+        >
+            ›
+        </button>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CATÁLOGO DAS TUAS MÚSICAS
+    ====================================================== -->
+
+    <main
+        id="catalogo"
+        class="catalog-section"
+    >
+
+        <div class="container">
+
+
+            <div class="catalog-header">
+
+                <div>
+
+                    <span class="section-label">
+                        MEU CATÁLOGO
+                    </span>
+
+
+                    <h2>
+                        Músicas recentes
+                    </h2>
+
+
+                    <p class="music-total">
+
+                        <span id="musicCount">
+                            0
+                        </span>
+
+                        músicas disponíveis
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- Pesquisa -->
+
+                <div class="search-box">
+
+                    <span class="search-icon">
+                        🔍
+                    </span>
+
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Pesquisar música, artista ou gênero..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TUAS MÚSICAS
+            ================================================== -->
+
+            <div
+                id="musicGrid"
+                class="music-grid"
+            ></div>
+
+
+
+            <!-- Nenhum resultado -->
+
+            <div
+                id="noResults"
+                class="no-results"
+                hidden
+            >
+
+                <div class= "no-results-icon">
+                    🎵
+                </div>
+
+
+                <h3>
+                    Nenhuma música encontrada
+                </h3>
+
+
+                <p>
+                    Tente pesquisar por outro nome,
+                    artista ou gênero.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         SPOTIFY
+    ====================================================== -->
+
+    <section
+        id="spotify"
+        class="spotify-section"
+    >
+
+        <div class="container">
+
+
+            <div class="spotify-header">
+
+                <div>
+
+                    <span class="spotify-label">
+                        SPOTIFY
+                    </span>
+
+
+                    <h2>
+                        Descubra mais músicas
+                    </h2>
+
+
+                    <p>
+                        Pesquise no catálogo do Spotify
+                        usando a caixa de pesquisa acima.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Estado inicial -->
+
+            <div
+                id="spotifyInitial"
+                class="spotify-message"
+            >
+
+                <div class="spotify-message-icon">
+                    🎧
+                </div>
+
+
+                <h3>
+                    Pesquise uma música
+                </h3>
+
+
+                <p>
+                    Digite o nome de uma música ou artista
+                    na pesquisa acima para encontrar resultados
+                    do Spotify.
+                </p>
+
+            </div>
+
+
+
+            <!-- Carregando -->
+
+            <div
+                id="spotifyLoading"
+                class="spotify-message"
+                hidden
+            >
+
+                <div class="spotify-spinner"></div>
+
+
+                <h3>
+                    Pesquisando no Spotify...
+                </h3>
+
+
+                <p>
+                    Aguarde um momento.
+                </p>
+
+            </div>
+
+
+
+            <!-- Resultados -->
+
+            <div
+                id="spotifyResults"
+                class="music-grid spotify-grid"
+            ></div>
+
+
+
+            <!-- Sem resultados -->
+
+            <div
+                id="spotifyNoResults"
+                class="spotify-message"
+                hidden
+            >
+
+                <div class="spotify-message-icon">
+                    🎵
+                </div>
+
+
+                <h3>
+                    Nenhum resultado encontrado
+                </h3>
+
+
+                <p>
+                    Tente pesquisar outro artista ou música.
+                </p>
+
+            </div>
+
+
+
+            <!-- Erro -->
+
+            <div
+                id="spotifyError"
+                class="spotify-message spotify-error"
+                hidden
+            >
+
+                <div class="spotify-message-icon">
+                    ⚠️
+                </div>
+
+
+                <h3>
+                    Não foi possível pesquisar no Spotify
+                </h3>
+
+
+                <p>
+                    Verifique a configuração da função do Spotify
+                    no Netlify.
+                </p>
+
+            </div>
+
+
+
+            <!-- Aviso/atribuição -->
+
+            <div class="spotify-attribution">
+
+                <span class="spotify-logo-text">
+                    Spotify
+                </span>
+
+                <span>
+                    Resultados e conteúdo pertencem ao Spotify.
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         RODAPÉ
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-content">
+
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="logo footer-logo"
+                >
+
+                    <span class="logo-icon">
+                        ♪
+                    </span>
+
+                    <span>
+                        Zero<span class="logo-highlight">
+                            Game
+                        </span>
+                    </span>
+
+                </a>
+
+
+                <p>
+                    Música, descoberta e entretenimento.
+                    <br>
+                    Ouça online e baixe suas músicas favoritas.
+                </p>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Navegação
+                </h3>
+
+
+                <a href="index.html">
+                    Início
+                </a>
+
+
+                <a href="#catalogo">
+                    Músicas
+                </a>
+
+
+                <a href="#spotify">
+                    Spotify
+                </a>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Contacto
+                </h3>
+
+
+                <p>
+                    sergiomarllen063@gmail.com
+                </p>
+
+
+                <p>
+                    +244 934037073
+                    +244 958262904
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="container footer-bottom">
+
+            <p>
+
+                ©
+                <span id="currentYear"></span>
+
+                ZeroGame
+
+                Todos os direitos reservados.
+
+            </p>
+            <p>Desenvolvido por <strong>Sérgio Cassanje</strong> Desenvolvidor web</p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         DADOS DAS TUAS MÚSICAS
+    ====================================================== -->
+
+    <script src="assets/js/musicas.js"></script>
+
+
+
+    <!-- =====================================================
+         FUNCIONAMENTO DO SITE + SPOTIFY
+    ====================================================== -->
+
+    <script src="assets/js/app.js"></script>
+
+
+</body>
+
+</html>
+

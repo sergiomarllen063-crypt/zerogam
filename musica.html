@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Zerogame-musica</title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+<header class="site-header">
+
+    <div class="container header-inner">
+
+        <a href="index.html" class="brand">
+
+            <span class="brand-icon">♪</span>
+''
+            Zero<span>Game</span>
+
+        </a>
+
+
+        <a
+            href="index.html"
+            class="back-link"
+        >
+            ← Voltar
+        </a>
+
+    </div>
+
+</header>
+
+
+<main class="container music-page">
+
+    <div id="musicDetails"></div>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="container footer-inner">
+
+        <strong>
+            ♪ ZeroGame
+        </strong>
+
+        <span>
+            © <span id="year"></span>
+        </span>
+
+    </div>
+
+</footer>
+
+
+<script src="assets/js/musicas.js"></script>
+
+
+<script>
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const id =
+    Number(params.get("id"));
+
+
+const musica =
+    musicas.find(
+        item => item.id === id
+    );
+
+
+const details =
+    document.getElementById(
+        "musicDetails"
+    );
+
+
+document.getElementById("year")
+    .textContent =
+    new Date().getFullYear();
+
+
+if (!musica) {
+
+    details.innerHTML = `
+
+        <div class="not-found">
+
+            <div class="not-found-icon">
+                ♪
+            </div>
+
+            <h1>
+                Música não encontrada
+            </h1>
+
+            <p>
+                A música que procuras não existe.
+            </p>
+
+            <a
+                href="index.html"
+                class="btn btn-primary"
+            >
+                Voltar ao início
+            </a>
+
+        </div>
+
+    `;
+
+} else {
+
+    document.title =
+        `${musica.titulo} — ${musica.artista}`;
+
+
+    details.innerHTML = `
+
+        <article class="music-detail">
+
+            <div class="detail-cover">
+
+                <img
+                    src="${musica.capa}"
+                    alt="${musica.titulo}"
+                >
+
+            </div>
+
+
+            <div class="detail-content">
+
+                <span class="music-category">
+                    ${musica.genero || "Música"}
+                </span>
+
+
+                <h1>
+                    ${musica.titulo}
+                </h1>
+
+
+                <h2>
+                    ${musica.artista}
+                </h2>
+
+
+                <p class="detail-description">
+                    ${musica.descricao || ""}
+                </p>
+
+
+                <audio
+                    controls
+                    class="detail-player"
+                >
+
+                    <source
+                        src="${musica.arquivo}"
+                        type="audio/mpeg"
+                    >
+
+                </audio>
+
+
+                <a
+                    href="${musica.arquivo}"
+                    download
+                    class="btn btn-primary download-large"
+                >
+                    ↓ Baixar música
+                </a>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+</script>
+
+</body>
+</html>
