@@ -1,526 +1,143 @@
+const TOKEN_URL = "https://accounts.spotify.com/api/token";
+const SEARCH_URL = "https://api.spotify.com/v1/search";
 
-/* ==========================================================
-   SPOTIFY SEARCH
-   Netlify Function
+let accessToken = null;
+let tokenExpiresAt = 0;
 
-   Esta função:
+async function obterTokenSpotify() {
+    const agora = Date.now();
 
-   1. Recebe uma pesquisa do navegador.
-   2. Obtém um token do Spotify.
-   3. Pesquisa músicas.
-   4. Devolve somente os dados necessários ao site.
-
-   IMPORTANTE:
-
-   SPOTIFY_CLIENT_ID
-   SPOTIFY_CLIENT_SECRET
-
-   ficam nas variáveis de ambiente do Netlify.
-
-   NÃO colocar essas informações neste arquivo.
-========================================================== */
-
-
-/* ==========================================================
-   CACHE DO TOKEN
-========================================================== */
-
-let spotifyToken = null;
-
-let spotifyTokenExpiration = 0;
-
-
-
-/* ==========================================================
-   CABEÇALHOS
-========================================================== */
-
-const headers = {
-
-    "Content-Type":
-        "application/json",
-
-    "Cache-Control":
-        "public, max-age=60"
-
-};
-
-
-
-/* ==========================================================
-   FUNÇÃO PRINCIPAL
-========================================================== */
-
-export default async function handler(request) {
-
-
-    /*
-        Só aceitamos GET.
-    */
-
-    if (request.method !== "GET") {
-
-        return {
-
-            statusCode: 405,
-
-            headers,
-
-            body: JSON.stringify({
-
-                error:
-                    "Método não permitido."
-
-            })
-
-        };
-
+    if (accessToken && agora < tokenExpiresAt) {
+        return accessToken;
     }
 
+    const clientId = process.env.SPOTIFY_CLIENT_ID;
+    const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
-
-    /*
-        Ler pesquisa.
-    */
-
-    const url =
-        new URL(
-            request.url
-        );
-
-
-    const query =
-        url.searchParams
-            .get("q")
-            ?.trim();
-
-
-
-    /*
-        Verificar pesquisa.
-    */
-
-    if (!query) {
-
-        return {
-
-            statusCode: 400,
-
-            headers,
-
-            body: JSON.stringify({
-
-                error:
-                    "Digite uma música ou artista."
-
-            })
-
-        };
-
+    if (!clientId || !clientSecret) {
+        throw new Error("Variáveis do Spotify não configuradas no Netlify.");
     }
 
+    const credenciais = Buffer.from(
+        `${clientId}:${clientSecret}`
+    ).toString("base64");
 
+    const resposta = await fetch(TOKEN_URL, {
+        method: "POST",
+        headers: {
+            "Authorization": `Basic ${credenciais}`,
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "grant_type=client_credentials"
+    });
 
-    /*
-        Limitar tamanho da pesquisa.
-    */
-
-    if (query.length > 100) {
-
-        return {
-
-            statusCode: 400,
-
-            headers,
-
-            body: JSON.stringify({
-
-                error:
-                    "Pesquisa muito longa."
-
-            })
-
-        };
-
+    if (!resposta.ok) {
+        const erro = await resposta.text();
+        throw new Error(`Erro ao obter token Spotify: ${erro}`);
     }
 
+    const dados = await resposta.json();
 
+    accessToken = dados.access_token;
 
-    try {
+    tokenExpiresAt = agora + ((dados.expires_in - 60) * 1000);
 
-
-        /* ==================================================
-           OBTER TOKEN
-        ================================================== */
-
-        const token =
-            await getSpotifyToken();
-
-
-
-        /* ==================================================
-           PESQUISAR SPOTIFY
-        ================================================== */
-
-        const spotifyURL =
-            new URL(
-                "https://api.spotify.com/v1/search"
-            );
-
-
-        spotifyURL.searchParams.set(
-            "q",
-            query
-        );
-
-
-        spotifyURL.searchParams.set(
-            "type",
-            "track"
-        );
-
-
-        spotifyURL.searchParams.set(
-            "limit",
-            "12"
-        );
-
-
-        /*
-            Mercado.
-
-            AO = Angola.
-        */
-
-        spotifyURL.searchParams.set(
-            "market",
-            "AO"
-        );
-
-
-
-        const response =
-            await fetch(
-                spotifyURL,
-                {
-
-                    method:
-                        "GET",
-
-                    headers: {
-
-                        "Authorization":
-                            `Bearer ${token}`
-
-                    }
-
-                }
-            );
-
-
-
-        /*
-            Se o Spotify devolver erro.
-        */
-
-        if (!response.ok) {
-
-            const erro =
-                await response.text();
-
-
-            console.error(
-                "Spotify API:",
-                erro
-            );
-
-
-            return {
-
-                statusCode:
-                    response.status,
-
-                headers,
-
-                body:
-                    JSON.stringify({
-
-                        error:
-                            "Erro ao consultar Spotify."
-
-                    })
-
-            };
-
-        }
-
-
-
-        const data =
-            await response.json();
-
-
-
-        /*
-            Transformar a resposta
-            num formato simples.
-        */
-
-        const tracks =
-            Array.isArray(
-                data.tracks?.items
-            )
-                ? data.tracks.items.map(
-                    function (track) {
-
-                        return {
-
-                            id:
-                                track.id,
-
-                            titulo:
-                                track.name,
-
-                            artistas:
-                                Array.isArray(
-                                    track.artists
-                                )
-                                    ? track.artists.map(
-                                        artist =>
-                                            artist.name
-                                    )
-                                    : [],
-
-                            album:
-                                track.album?.name
-                                || "",
-
-                            imagem:
-                                track.album?.images?.[0]?.url
-                                || "",
-
-                            url:
-                                track.external_urls?.spotify
-                                || "",
-
-                            duracao:
-                                track.duration_ms
-                                || 0
-
-                        };
-
-                    }
-                )
-                : [];
-
-
-
-        /*
-            Resposta final.
-        */
-
-        return {
-
-            statusCode:
-                200,
-
-            headers,
-
-            body:
-                JSON.stringify({
-
-                    tracks
-
-                })
-
-        };
-
-    }
-
-
-    catch (error) {
-
-        console.error(
-            "Erro Spotify:",
-            error
-        );
-
-
-        return {
-
-            statusCode:
-                500,
-
-            headers,
-
-            body:
-                JSON.stringify({
-
-                    error:
-                        "Erro interno ao pesquisar Spotify."
-
-                })
-
-        };
-
-    }
-
+    return accessToken;
 }
 
+export default async (req) => {
+    try {
+        const url = new URL(req.url);
 
+        const termo = url.searchParams.get("q");
 
-/* ==========================================================
-   OBTER TOKEN DO SPOTIFY
-========================================================== */
-
-async function getSpotifyToken() {
-
-
-    /*
-        Se ainda temos um token válido,
-        reutilizamos.
-
-        Isso evita pedir um novo token
-        em cada pesquisa.
-    */
-
-    if (
-        spotifyToken &&
-        Date.now() <
-            spotifyTokenExpiration
-    ) {
-
-        return spotifyToken;
-
-    }
-
-
-
-    /*
-        Credenciais vindas do Netlify.
-    */
-
-    const clientId =
-        process.env.SPOTIFY_CLIENT_ID;
-
-
-    const clientSecret =
-        process.env.SPOTIFY_CLIENT_SECRET;
-
-
-
-    /*
-        Verificar credenciais.
-    */
-
-    if (
-        !clientId ||
-        !clientSecret
-    ) {
-
-        throw new Error(
-            "Variáveis SPOTIFY_CLIENT_ID e SPOTIFY_CLIENT_SECRET não configuradas."
-        );
-
-    }
-
-
-
-    /*
-        Spotify exige:
-
-        client_id:client_secret
-
-        codificado em Base64.
-    */
-
-    const credentials =
-        Buffer
-            .from(
-                `${clientId}:${clientSecret}`
-            )
-            .toString(
-                "base64"
+        if (!termo || termo.trim().length < 2) {
+            return new Response(
+                JSON.stringify({
+                    tracks: []
+                }),
+                {
+                    status: 200,
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
             );
+        }
 
+        const token = await obterTokenSpotify();
 
+        const parametros = new URLSearchParams({
+            q: termo.trim(),
+            type: "track",
+            limit: "12"
+        });
 
-    /*
-        Pedir token.
-    */
-
-    const response =
-        await fetch(
-            "https://accounts.spotify.com/api/token",
+        const resposta = await fetch(
+            `${SEARCH_URL}?${parametros.toString()}`,
             {
-
-                method:
-                    "POST",
-
+                method: "GET",
                 headers: {
-
-                    "Authorization":
-                        `Basic ${credentials}`,
-
-                    "Content-Type":
-                        "application/x-www-form-urlencoded"
-
-                },
-
-                body:
-                    "grant_type=client_credentials"
-
+                    "Authorization": `Bearer ${token}`
+                }
             }
         );
 
+        if (!resposta.ok) {
+            const erro = await resposta.text();
 
+            return new Response(
+                JSON.stringify({
+                    erro: "Erro na API do Spotify",
+                    detalhes: erro
+                }),
+                {
+                    status: resposta.status,
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+            );
+        }
 
-    if (!response.ok) {
+        const dados = await resposta.json();
 
-        const erro =
-            await response.text();
+        const tracks = (dados.tracks?.items || []).map((musica) => ({
+            id: musica.id,
+            titulo: musica.name,
+            artistas: musica.artists.map((artista) => artista.name),
+            album: musica.album?.name || "",
+            imagem: musica.album?.images?.[0]?.url || "",
+            url: musica.external_urls?.spotify || ""
+        }));
 
-
-        console.error(
-            "Spotify Token:",
-            erro
+        return new Response(
+            JSON.stringify({
+                tracks
+            }),
+            {
+                status: 200,
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
         );
 
+    } catch (erro) {
 
-        throw new Error(
-            "Não foi possível obter token Spotify."
+        console.error("Spotify Function Error:", erro);
+
+        return new Response(
+            JSON.stringify({
+                erro: "Erro interno na função Spotify.",
+                detalhes: erro.message
+            }),
+            {
+                status: 500,
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
         );
-
     }
-
-
-
-    const data =
-        await response.json();
-
-
-
-    /*
-        Guardar token.
-        
-        Colocamos 60 segundos de margem
-        antes de realmente expirar.
-    */
-
-    spotifyToken =
-        data.access_token;
-
-
-    spotifyTokenExpiration =
-        Date.now() +
-        (
-            (data.expires_in - 60)
-            * 1000
-        );
-
-
-
-    return spotifyToken;
-
-}
-
+};
