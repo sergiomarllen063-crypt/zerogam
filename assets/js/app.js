@@ -52,7 +52,9 @@ const currentYear =
     document.getElementById("currentYear");
 
 
-/* YouTube */
+/* ==========================================================
+   YOUTUBE
+========================================================== */
 
 const youtubeInitial =
     document.getElementById("spotifyInitial");
@@ -108,6 +110,11 @@ function iniciarCatalogo() {
 
 
     renderizarMusicas(musicas);
+
+
+    if (!searchInput) {
+        return;
+    }
 
 
     searchInput.addEventListener(
@@ -185,22 +192,35 @@ function pesquisarMusicasLocais(termo) {
 
 function renderizarMusicas(lista) {
 
+    if (!musicGrid) {
+        return;
+    }
+
+
     musicGrid.innerHTML = "";
 
 
-    musicCount.textContent =
-        lista.length;
+    if (musicCount) {
+
+        musicCount.textContent =
+            lista.length;
+
+    }
 
 
     if (lista.length === 0) {
 
-        noResults.hidden = false;
+        if (noResults) {
+            noResults.hidden = false;
+        }
 
         return;
     }
 
 
-    noResults.hidden = true;
+    if (noResults) {
+        noResults.hidden = true;
+    }
 
 
     lista.forEach(
@@ -497,6 +517,11 @@ function renderizarYouTube(lista) {
     }
 
 
+    if (!youtubeResults) {
+        return;
+    }
+
+
     youtubeResults.innerHTML = "";
 
 
@@ -533,7 +558,9 @@ function renderizarYouTube(lista) {
 
                     <p class="music-artist">
 
-                        ${escapeHTML(musica.canal || "YouTube")}
+                        ${escapeHTML(
+                            musica.canal || "YouTube"
+                        )}
 
                     </p>
 
@@ -541,7 +568,8 @@ function renderizarYouTube(lista) {
                     <p class="music-description">
 
                         ${escapeHTML(
-                            musica.descricao || "Vídeo disponível no YouTube."
+                            musica.descricao ||
+                            "Vídeo disponível no YouTube."
                         )}
 
                     </p>
@@ -573,11 +601,11 @@ function renderizarYouTube(lista) {
 
     /*
         Levar o usuário para a seção
-        dos resultados.
+        dos resultados do YouTube.
     */
 
     const secaoYouTube =
-        document.getElementById("spotify");
+        document.getElementById("youtube");
 
 
     if (secaoYouTube) {
@@ -723,7 +751,6 @@ function iniciarCarrossel() {
     let interval;
 
 
-
     /*
         Criar indicadores automaticamente.
     */
@@ -771,7 +798,6 @@ function iniciarCarrossel() {
         dotsContainer.querySelectorAll(
             ".hero-dot"
         );
-
 
 
     /*
@@ -839,7 +865,6 @@ function iniciarCarrossel() {
     }
 
 
-
     /*
         Próximo
     */
@@ -853,7 +878,6 @@ function iniciarCarrossel() {
     }
 
 
-
     /*
         Anterior
     */
@@ -865,7 +889,6 @@ function iniciarCarrossel() {
         );
 
     }
-
 
 
     /*
@@ -890,7 +913,6 @@ function iniciarCarrossel() {
     }
 
 
-
     /*
         Botão próximo
     */
@@ -911,7 +933,6 @@ function iniciarCarrossel() {
     }
 
 
-
     /*
         Botão anterior
     */
@@ -930,7 +951,6 @@ function iniciarCarrossel() {
         );
 
     }
-
 
 
     /*
