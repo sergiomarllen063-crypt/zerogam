@@ -195,7 +195,7 @@ const musicas = [
 
         genero: "Rap",
 
-        capa: "capas/importa (2).jpg",
+        capa: "capas/importa.jpg",
 
         arquivo: "musicas/importa.mp3",
 
