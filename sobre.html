@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   
+    <title>Sobre Nós — Zero Game</title>
+
+    <meta name="description" content="Conheça o Zero Game, uma plataforma dedicada à descoberta e divulgação de conteúdos musicais.">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .page-content {
+            min-height: 70vh;
+            padding: 80px 0;
+        }
+
+        .page-box {
+            max-width: 850px;
+            margin: auto;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            padding: 45px;
+        }
+
+        .page-label {
+            color: #6c63ff;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .page-box h1 {
+            margin: 12px 0 25px;
+            font-size: 42px;
+        }
+
+        .page-box h2 {
+            margin-top: 35px;
+            margin-bottom: 12px;
+        }
+
+        .page-box p {
+            color: #b8bcc8;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 650px) {
+            .page-content {
+                padding: 50px 0;
+            }
+
+            .page-box {
+                padding: 25px 20px;
+            }
+
+            .page-box h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-content">
+
+        <a href="index.html" class="logo">
+            <span class="logo-icon">♪</span>
+            <span>Zero<span class="logo-highlight">Game</span></span>
+        </a>
+
+        <nav class="main-nav">
+            <a href="index.html">Início</a>
+            <a href="index.html#catalogo">Músicas</a>
+            <a href="index.html#youtube">YouTube</a>
+            <a href="sobre.html" class="active">Sobre</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<main class="page-content">
+
+    <div class="container">
+
+        <article class="page-box">
+
+            <span class="page-label">ZEROGAME</span>
+
+            <h1>Sobre nós</h1>
+
+            <p>
+                O ZeroGame é uma plataforma dedicada à música,
+                descoberta de artistas e entretenimento.
+            </p>
+
+            <p>
+                O nosso objetivo é criar um espaço simples e agradável
+                onde os visitantes possam descobrir novas músicas,
+                conhecer artistas e encontrar conteúdos musicais
+                disponíveis online.
+            </p>
+
+            <h2>O que fazemos?</h2>
+
+            <p>
+                Publicamos conteúdos musicais e apresentamos informações
+                relacionadas com artistas e músicas. Também disponibilizamos
+                ferramentas de pesquisa para ajudar os visitantes a descobrir
+                conteúdos disponíveis em plataformas externas, como o YouTube.
+            </p>
+
+            <h2>O nosso objetivo</h2>
+
+            <p>
+                Queremos desenvolver o ZeroGame como uma plataforma musical
+                moderna, acessível e útil para quem gosta de música,
+                especialmente para a comunidade de língua portuguesa.
+            </p>
+
+            <h2>Conteúdo</h2>
+
+            <p>
+                Procuramos manter as informações apresentadas no site
+                organizadas e atualizadas. Conteúdos externos são apresentados
+                através das respetivas plataformas e serviços.
+            </p>
+
+        </article>
+
+    </div>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="container footer-content">
+
+        <div class="footer-brand">
+
+            <a href="index.html" class="logo footer-logo">
+                <span class="logo-icon">♪</span>
+                <span>Zero<span class="logo-highlight">Game</span></span>
+            </a>
+
+            <p>
+                Música, descoberta e entretenimento.
+                <br>
+                Ouça online e descubra novos artistas.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Navegação</h3>
+
+            <a href="index.html">Início</a>
+            <a href="index.html#catalogo">Músicas</a>
+            <a href="index.html#youtube">YouTube</a>
+            <a href="sobre.html">Sobre nós</a>
+            <a href="contacto.html">Contacto</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Informações</h3>
+
+            <a href="privacidade.html">Política de Privacidade</a>
+            <a href="termos.html">Termos de Uso</a>
+            <a href="direitos-autorais.html">Direitos Autorais</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="container footer-bottom">
+
+        <p>
+            © <span id="currentYear"></span>
+            ZeroGame Todos os direitos reservados.
+        </p>
+
+        <p>
+            Desenvolvido por
+            <strong>Sérgio Cassanje</strong>
+            — Desenvolvedor Web
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script>
+    document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+</script>
+
+</body>
+</html>

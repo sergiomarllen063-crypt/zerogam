@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="robots"
+          content="noindex">
+
+    <title>Página não encontrada — ZeroGame</title>
+
+    <link rel="stylesheet"
+          href="assets/css/style.css">
+
+    <style>
+
+        .error-page {
+            min-height: 75vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+        }
+
+        .error-box {
+            max-width: 650px;
+            padding: 40px 20px;
+        }
+
+        .error-number {
+            font-size: 110px;
+            line-height: 1;
+            font-weight: 900;
+
+            color: #6c63ff;
+        }
+
+        .error-box h1 {
+            font-size: 36px;
+            margin: 20px 0 15px;
+        }
+
+        .error-box p {
+            color: #b8bcc8;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .error-button {
+            display: inline-block;
+
+            padding: 14px 25px;
+
+            border-radius: 10px;
+
+            background: #6c63ff;
+            color: white;
+
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .error-button:hover {
+            opacity: 0.9;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<header class="site-header">
+
+    <div class="container header-content">
+
+        <a href="index.html" class="logo">
+
+            <span class="logo-icon">♪</span>
+
+            <span>
+                Zero<span class="logo-highlight">Game</span>
+            </span>
+
+        </a>
+
+
+        <nav class="main-nav">
+
+            <a href="index.html">
+                Início
+            </a>
+
+            <a href="index.html#catalogo">
+                Músicas
+            </a>
+
+            <a href="index.html#youtube">
+                YouTube
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main class="error-page">
+
+    <div class="error-box">
+
+        <div class="error-number">
+            404
+        </div>
+
+        <h1>
+            Página não encontrada
+        </h1>
+
+        <p>
+            A página que estás a tentar acessar não existe
+            ou foi movida para outro endereço.
+        </p>
+
+        <a href="index.html"
+           class="error-button">
+
+            ← Voltar para o início
+
+        </a>
+
+    </div>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="container footer-bottom">
+
+        <p>
+            © <span id="currentYear"></span>
+            ZeroGame Todos os direitos reservados.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+    document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+
+</script>
+
+</body>
+</html>

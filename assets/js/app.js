@@ -73,6 +73,34 @@ const youtubeError =
 
 
 /* ==========================================================
+   CONTROLE DA PESQUISA
+========================================================== */
+
+/*
+    Guarda o último termo pesquisado.
+
+    Isso evita que uma resposta antiga do YouTube
+    apareça depois que o usuário já pesquisou outra coisa.
+*/
+
+let ultimaPesquisa = "";
+
+
+/*
+    Guarda se a pesquisa local encontrou alguma música.
+*/
+
+let encontrouLocal = false;
+
+
+/*
+    Guarda se o YouTube encontrou alguma música.
+*/
+
+let encontrouYouTube = false;
+
+
+/* ==========================================================
    SEGURANÇA
    Escapa HTML antes de colocar dados na página.
 ========================================================== */
@@ -127,6 +155,36 @@ function iniciarCatalogo() {
                     .toLowerCase();
 
 
+            /*
+                Guardamos o termo atual.
+            */
+
+            ultimaPesquisa = termo;
+
+
+            /*
+                Se a pesquisa estiver vazia,
+                voltamos ao estado normal.
+            */
+
+            if (!termo) {
+
+                encontrouLocal = false;
+
+                encontrouYouTube = false;
+
+                renderizarMusicas(musicas);
+
+                limparYouTube();
+
+                return;
+            }
+
+
+            /*
+                Procurar nas músicas da plataforma.
+            */
+
             pesquisarMusicasLocais(termo);
 
         }
@@ -142,6 +200,8 @@ function iniciarCatalogo() {
 function pesquisarMusicasLocais(termo) {
 
     if (!termo) {
+
+        encontrouLocal = false;
 
         renderizarMusicas(musicas);
 
@@ -181,7 +241,28 @@ function pesquisarMusicasLocais(termo) {
         );
 
 
-    renderizarMusicas(resultados);
+    /*
+        Verificar se encontramos alguma
+        música dentro da plataforma.
+    */
+
+    encontrouLocal =
+        resultados.length > 0;
+
+
+    /*
+        IMPORTANTE:
+
+        Se não encontrou localmente,
+        NÃO mostramos "Nenhuma música encontrada".
+
+        O YouTube ainda pode encontrar.
+    */
+
+    renderizarMusicas(
+        resultados,
+        true
+    );
 
 }
 
@@ -190,7 +271,10 @@ function pesquisarMusicasLocais(termo) {
    RENDERIZAR MÚSICAS LOCAIS
 ========================================================== */
 
-function renderizarMusicas(lista) {
+function renderizarMusicas(
+    lista,
+    pesquisaAtiva = false
+) {
 
     if (!musicGrid) {
         return;
@@ -208,10 +292,36 @@ function renderizarMusicas(lista) {
     }
 
 
+    /*
+        Se não existem resultados locais
+        durante uma pesquisa, simplesmente
+        escondemos a mensagem.
+
+        O YouTube ainda está sendo pesquisado.
+    */
+
+    if (
+        lista.length === 0 &&
+        pesquisaAtiva
+    ) {
+
+        if (noResults) {
+            noResults.hidden = true;
+        }
+
+        return;
+    }
+
+
+    /*
+        Se não há resultados e não estamos
+        numa pesquisa, mostra o estado normal.
+    */
+
     if (lista.length === 0) {
 
         if (noResults) {
-            noResults.hidden = false;
+            noResults.hidden = true;
         }
 
         return;
@@ -348,6 +458,12 @@ function iniciarYouTube() {
 
             if (termo.length === 0) {
 
+                ultimaPesquisa = "";
+
+                encontrouLocal = false;
+
+                encontrouYouTube = false;
+
                 limparYouTube();
 
                 return;
@@ -355,13 +471,33 @@ function iniciarYouTube() {
 
 
             /*
-                Evita chamadas à API a cada tecla.
+                Evita chamadas à API para pesquisas
+                com apenas uma letra.
             */
 
             if (termo.length < 2) {
+
                 return;
             }
 
+
+            /*
+                Guardar exatamente a pesquisa atual.
+            */
+
+            ultimaPesquisa = termo;
+
+
+            /*
+                Mostrar o carregamento do YouTube.
+            */
+
+            mostrarYouTubeLoading();
+
+
+            /*
+                Esperar 600ms antes de pesquisar.
+            */
 
             timer =
                 setTimeout(
@@ -385,6 +521,14 @@ function iniciarYouTube() {
 
 async function pesquisarYouTube(termo) {
 
+    /*
+        Guardamos este termo para comparar
+        quando a resposta chegar.
+    */
+
+    const pesquisaAtual = termo;
+
+
     mostrarYouTubeLoading();
 
 
@@ -394,6 +538,19 @@ async function pesquisarYouTube(termo) {
             await fetch(
                 `/.netlify/functions/youtube-search?q=${encodeURIComponent(termo)}`
             );
+
+
+        /*
+            Verificar se o usuário mudou a pesquisa
+            enquanto o YouTube estava respondendo.
+        */
+
+        if (
+            pesquisaAtual !== ultimaPesquisa
+        ) {
+
+            return;
+        }
 
 
         if (!resposta.ok) {
@@ -435,17 +592,55 @@ async function pesquisarYouTube(termo) {
         }
 
 
-        if (dados.resultados.length === 0) {
+        /*
+            Verificar novamente se a pesquisa
+            continua sendo a atual.
+        */
 
-            mostrarYouTubeSemResultados();
+        if (
+            pesquisaAtual !== ultimaPesquisa
+        ) {
 
             return;
         }
 
 
+        /*
+            YOUTUBE NÃO ENCONTROU NADA
+        */
+
+        if (dados.resultados.length === 0) {
+
+            encontrouYouTube = false;
+
+            mostrarYouTubeSemResultados();
+
+            verificarNenhumResultado();
+
+            return;
+        }
+
+
+        /*
+            YOUTUBE ENCONTROU RESULTADOS
+        */
+
+        encontrouYouTube = true;
+
+
         renderizarYouTube(
             dados.resultados
         );
+
+
+        /*
+            Como encontramos no YouTube,
+            não devemos mostrar "Nenhuma música encontrada".
+        */
+
+        if (noResults) {
+            noResults.hidden = true;
+        }
 
     }
 
@@ -458,7 +653,52 @@ async function pesquisarYouTube(termo) {
         );
 
 
+        /*
+            Só mostramos erro do YouTube.
+            Não mostramos "Nenhuma música encontrada"
+            porque houve um erro na pesquisa.
+        */
+
         mostrarYouTubeErro();
+
+    }
+
+}
+
+
+/* ==========================================================
+   VERIFICAR SE NÃO EXISTE EM NENHUM LUGAR
+========================================================== */
+
+function verificarNenhumResultado() {
+
+    /*
+        Só mostra a mensagem final quando:
+
+        1. Não existe música local
+        E
+        2. Não existe resultado no YouTube
+    */
+
+    if (
+        !encontrouLocal &&
+        !encontrouYouTube
+    ) {
+
+        if (noResults) {
+
+            noResults.hidden = false;
+
+        }
+
+    }
+    else {
+
+        if (noResults) {
+
+            noResults.hidden = true;
+
+        }
 
     }
 

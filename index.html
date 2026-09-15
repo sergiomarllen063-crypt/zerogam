@@ -3,23 +3,84 @@
 
 <head>
 
+    <!-- =====================================================
+         CONFIGURAÇÕES BÁSICAS
+    ====================================================== -->
+
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Zero Game — Música, Descobertas e Entretenimento</title>
 
     <meta
         name="description"
-        content="ZeroGame — ouça, descubra e baixe músicas."
+        content="Zero Game é uma plataforma de música onde você pode descobrir, ouvir e baixar músicas disponíveis na plataforma, além de encontrar conteúdos musicais no YouTube."
     >
 
-    <title>ZEROGAME</title>
+    <meta
+        name="keywords"
+        content="Zero Game, música Angola, músicas angolanas, baixar música, ouvir música, música online, afrobeat, kizomba, kuduro"
+    >
+
+    <meta name="author" content="Zero Game">
+
+    <meta name="robots" content="index, follow">
+
+
+    <!-- =====================================================
+         OPEN GRAPH
+         Usado quando o site é partilhado nas redes sociais
+    ====================================================== -->
+
+    <meta
+        property="og:title"
+        content="Zero Game — Música, Descobertas e Entretenimento"
+    >
+
+    <meta
+        property="og:description"
+        content="Descubra músicas, artistas e conteúdos musicais no Zero Game."
+    >
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:url"
+        content="https://zerogam.netlify.app/"
+    >
+
+    <meta
+        property="og:image"
+        content="https://zerogam.netlify.app/capas/banner/banner-01.jpg"
+    >
+
+    <meta
+        property="og:site_name"
+        content="Zero Game"
+    >
+
+
+    <!-- =====================================================
+         CSS PRINCIPAL
+    ====================================================== -->
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+    <!-- =====================================================
+         FAVICON
+         Se ainda não tiveres favicon.ico, podes adicionar
+         depois. Não é obrigatório para o funcionamento.
+    ====================================================== -->
 
     <link
-        rel="stylesheet"
-        href="assets/css/style.css"
+        rel="icon"
+        href="assets/favicon.ico"
+        type="image/x-icon"
     >
 
 </head>
@@ -49,6 +110,8 @@
             </a>
 
 
+            <!-- MENU -->
+
             <nav class="main-nav">
 
                 <a
@@ -66,6 +129,14 @@
                     YouTube
                 </a>
 
+                <a href="sobre.html">
+                    Sobre
+                </a>
+
+                <a href="contacto.html">
+                    Contacto
+                </a>
+
             </nav>
 
         </div>
@@ -75,35 +146,56 @@
 
 
     <!-- =====================================================
-         BANNER PRINCIPAL
+         BANNER PRINCIPAL / CARROSSEL
     ====================================================== -->
 
     <section class="hero-banner">
 
 
+        <!-- BANNER 01 -->
+
         <div
             class="hero-slide active"
+            style="background-image: url('capas/banner/abiude.png');"
+        ></div>
+
+
+        <!-- BANNER 02 -->
+
+        <div
+            class="hero-slide"
             style="background-image: url('capas/banner/banner-01.png');"
         ></div>
 
 
+        <!-- BANNER 03 -->
+
         <div
             class="hero-slide"
-            style="background-image: url('capas/banner/banner-02.jpg');"
+            style="background-image: url('capas/banner/pub.png');"
         ></div>
 
+
+        <!-- BANNER 04 -->
 
         <div
             class="hero-slide"
             style="background-image: url('capas/banner/banner-03.jpg');"
         ></div>
 
+         <!-- BANNER 05 -->
 
         <div
             class="hero-slide"
             style="background-image: url('capas/banner/banner-04.png');"
         ></div>
 
+         <!-- BANNER 06 -->
+
+        <div
+            class="hero-slide"
+            style="background-image: url('capas/banner/banner-02.jpg');"
+        ></div>
 
         <!--
             PARA ADICIONAR MAIS BANNERS:
@@ -117,8 +209,12 @@
         -->
 
 
+        <!-- ESCURECIMENTO DO BANNER -->
+
         <div class="hero-overlay"></div>
 
+
+        <!-- CONTEÚDO DO BANNER -->
 
         <div class="container hero-content">
 
@@ -138,6 +234,7 @@
 
                 <p>
                     Descubra novas músicas, artistas e sons.
+                    <br>
                     Ouça online e encontre seus artistas favoritos.
                 </p>
 
@@ -154,7 +251,7 @@
         </div>
 
 
-        <!-- Indicadores criados pelo JavaScript -->
+        <!-- INDICADORES -->
 
         <div
             class="hero-dots"
@@ -162,7 +259,7 @@
         ></div>
 
 
-        <!-- Setas -->
+        <!-- SETA ANTERIOR -->
 
         <button
             class="hero-arrow hero-prev"
@@ -172,6 +269,8 @@
             ‹
         </button>
 
+
+        <!-- SETA PRÓXIMA -->
 
         <button
             class="hero-arrow hero-next"
@@ -196,6 +295,8 @@
 
         <div class="container">
 
+
+            <!-- CABEÇALHO DO CATÁLOGO -->
 
             <div class="catalog-header">
 
@@ -224,8 +325,7 @@
                 </div>
 
 
-
-                <!-- Pesquisa -->
+                <!-- PESQUISA -->
 
                 <div class="search-box">
 
@@ -239,6 +339,7 @@
                         id="searchInput"
                         placeholder="Pesquisar música ou artista..."
                         autocomplete="off"
+                        aria-label="Pesquisar música ou artista"
                     >
 
                 </div>
@@ -258,7 +359,9 @@
 
 
 
-            <!-- Nenhum resultado -->
+            <!-- =================================================
+                 NENHUM RESULTADO
+            ================================================== -->
 
             <div
                 id="noResults"
@@ -283,7 +386,6 @@
 
             </div>
 
-
         </div>
 
     </main>
@@ -301,6 +403,8 @@
 
         <div class="container">
 
+
+            <!-- CABEÇALHO -->
 
             <div class="spotify-header">
 
@@ -383,7 +487,7 @@
 
 
             <!-- =================================================
-                 RESULTADOS
+                 RESULTADOS DO YOUTUBE
             ================================================== -->
 
             <div
@@ -466,7 +570,6 @@
 
             </div>
 
-
         </div>
 
     </section>
@@ -481,6 +584,10 @@
 
         <div class="container footer-content">
 
+
+            <!-- =================================================
+                 MARCA
+            ================================================== -->
 
             <div class="footer-brand">
 
@@ -512,6 +619,10 @@
 
 
 
+            <!-- =================================================
+                 NAVEGAÇÃO
+            ================================================== -->
+
             <div class="footer-column">
 
                 <h3>
@@ -533,9 +644,52 @@
                     YouTube
                 </a>
 
+
+                <a href="sobre.html">
+                    Sobre nós
+                </a>
+
+
+                <a href="contacto.html">
+                    Contacto
+                </a>
+
             </div>
 
 
+
+            <!-- =================================================
+                 INFORMAÇÕES
+            ================================================== -->
+
+            <div class="footer-column">
+
+                <h3>
+                    Informações
+                </h3>
+
+
+                <a href="privacidade.html">
+                    Política de Privacidade
+                </a>
+
+
+                <a href="termos.html">
+                    Termos de Uso
+                </a>
+
+
+                <a href="direitos-autorais.html">
+                    Direitos Autorais
+                </a>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CONTACTO
+            ================================================== -->
 
             <div class="footer-column">
 
@@ -557,19 +711,24 @@
 
             </div>
 
-
         </div>
 
 
+
+        <!-- =================================================
+             PARTE INFERIOR
+        ================================================== -->
 
         <div class="container footer-bottom">
 
             <p>
 
                 ©
-                <span id="currentYear"></span>
 
-                ZeroGame
+                <span id="currentYear">
+                </span>
+
+                Zero Game.
 
                 Todos os direitos reservados.
 
@@ -577,9 +736,15 @@
 
 
             <p>
+
                 Desenvolvido por
-                <strong>Sérgio Cassanje</strong>
+
+                <strong>
+                    Sérgio Cassanje
+                </strong>
+
                 — Desenvolvedor Web
+
             </p>
 
         </div>
@@ -597,7 +762,7 @@
 
 
     <!-- =====================================================
-         FUNCIONAMENTO DO SITE + YOUTUBE
+         FUNCIONAMENTO DO SITE + YOUTUBE + CARROSSEL
     ====================================================== -->
 
     <script src="assets/js/app.js"></script>

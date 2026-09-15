@@ -9,7 +9,7 @@ const musicas = [
 
         genero: "Repduro",
 
-        capa: "capas/banner-01.jpg",
+        capa: "capas/placa do adoco.jpg",
 
         arquivo: "musicas/FOCADO-PLACA DO ADOÇO_110344.mp3",
 
@@ -27,7 +27,7 @@ const musicas = [
 
         genero: "Repduro",
 
-        capa: "capas/banner-02.jpg",
+        capa: "capas/placa do adoco.jpg",
 
         arquivo: "musicas/A VIDA É DIFICEL - PLACA DO ADOÇON FT 69 BLAST.mp3",
 
@@ -61,7 +61,7 @@ const musicas = [
 
         genero: "Kuduro",
 
-        capa: "capas/banner-04.png",
+        capa: "capas/placa do adoco.jpg",
 
         arquivo: "musicas/PARO PARO-PLACA DO ADOÇO_104609.mp3",
 
@@ -95,7 +95,7 @@ const musicas = [
 
         genero: "Kuduro",
 
-        capa: "capas/banner-05.png",
+        capa: "capas/placa do adoco.jpg",
 
         arquivo: "musicas/PARO PARO-PLACA DO ADOÇO_104609.mp3",
 
@@ -136,5 +136,88 @@ const musicas = [
             "Rhamada rap do zerogame "
     },
 
+    {
+        id: 9,
+
+        titulo: "senta no prego do preto ",
+
+        artista: "Bastante aperto",
+
+        genero: "Rap",
+
+        capa: "capas/bastante .jpg",
+
+        arquivo: "musicas/senta no no prego do preto.mp3",
+
+        descricao:
+            "Placa do adoço rap do zerogame "
+    },
+    {
+        id: 10,
+
+        titulo: "fazer kumbu-placa do adoço ",
+
+        artista: "Bastante aperto ft Limi G",
+
+        genero: "Rap",
+
+        capa: "capas/placa do adoco.jpg",
+
+        arquivo: "musicas/senta no no prego do preto.mp3",
+
+        descricao:
+            "placa do adoço rap do zerogame "
+    },
+
+    {
+        id: 11,
+
+        titulo: "Palavras",
+
+        artista: "Rhamadar",
+
+        genero: "Rap",
+
+        capa: "capas/palavra.jpg",
+
+        arquivo: "musicas/palavra.mp3",
+
+        descricao:
+            "Rhamada rap do zerogame "
+    },
+
+    {
+        id: 12,
+
+        titulo: "importa",
+
+        artista: "Rhamadar",
+
+        genero: "Rap",
+
+        capa: "capas/importa (2).jpg",
+
+        arquivo: "musicas/importa.mp3",
+
+        descricao:
+            "Rhamada rap do zerogame "
+    },
+
+     {
+        id: 13,
+
+        titulo: "Promoção",
+
+        artista: "Rhamadar",
+
+        genero: "Rap",
+
+        capa: "capas/tes.jpg",
+
+        arquivo: "musicas/promocao.mp3",
+
+        descricao:
+            "Rhamada rap do zerogame "
+    },
     
 ];
