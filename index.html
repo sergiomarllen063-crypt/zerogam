@@ -3,36 +3,36 @@
 
 <head>
 
-    <!-- =====================================================
-         CONFIGURAÇÕES BÁSICAS
-    ====================================================== -->
-
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Zero Game — Música, Descobertas e Entretenimento</title>
 
-    
     <meta
         name="description"
-        content="Zero Game é uma plataforma de música onde você pode descobrir, ouvir e baixar músicas disponíveis na plataforma, além de encontrar conteúdos musicais no YouTube."
+        content="Zero Game é uma plataforma de música onde você pode descobrir, ouvir e baixar músicas disponíveis na plataforma, além de encontrar conteúdos musicais no YouTube e notícias sobre música."
     >
 
     <meta
         name="keywords"
-        content="Zero Game, música Angola, músicas angolanas, baixar música, ouvir música, música online, afrobeat, kizomba, kuduro"
+        content="Zero Game, música Angola, músicas angolanas, baixar música, ouvir música, música online, afrobeat, kizomba, kuduro, notícias musicais"
     >
 
-    <meta name="author" content="Zero Game">
+    <meta
+        name="author"
+        content="Zero Game"
+    >
 
-    <meta name="robots" content="index, follow">
+    <meta
+        name="robots"
+        content="index, follow"
+    >
 
-
-    <!-- =====================================================
-         OPEN GRAPH
-         Usado quando o site é partilhado nas redes sociais
-    ====================================================== -->
+    <!-- Open Graph -->
 
     <meta
         property="og:title"
@@ -41,7 +41,7 @@
 
     <meta
         property="og:description"
-        content="Descubra músicas, artistas e conteúdos musicais no Zero Game."
+        content="Descubra músicas, artistas, notícias e conteúdos musicais no Zero Game."
     >
 
     <meta
@@ -56,7 +56,7 @@
 
     <meta
         property="og:image"
-        content="https://zerogam.netlify.app/capas/banner/banner-01.jpg"
+        content="https://zerogam.netlify.app/capas/banner/banner-01.png"
     >
 
     <meta
@@ -64,24 +64,11 @@
         content="Zero Game"
     >
 
-
-    <!-- =====================================================
-         CSS PRINCIPAL
-    ====================================================== -->
-
-    <link rel="stylesheet" href="assets/css/style.css">
-
-
-    <!-- =====================================================
-         FAVICON
-         Se ainda não tiveres favicon.ico, podes adicionar
-         depois. Não é obrigatório para o funcionamento.
-    ====================================================== -->
+    <!-- CSS -->
 
     <link
-        rel="icon"
-        href="assets/favicon.ico"
-        type="image/x-icon"
+        rel="stylesheet"
+        href="assets/css/style.css"
     >
 
 </head>
@@ -98,7 +85,10 @@
 
         <div class="container header-content">
 
-            <a href="index.html" class="logo">
+            <a
+                href="index.html"
+                class="logo"
+            >
 
                 <span class="logo-icon">
                     ♪
@@ -111,8 +101,6 @@
             </a>
 
 
-            <!-- MENU -->
-
             <nav class="main-nav">
 
                 <a
@@ -122,17 +110,26 @@
                     Início
                 </a>
 
+
                 <a href="#catalogo">
                     Músicas
                 </a>
+
 
                 <a href="#youtube">
                     YouTube
                 </a>
 
+
+                <a href="noticias.html">
+                    Notícias
+                </a>
+
+
                 <a href="sobre.html">
                     Sobre
                 </a>
+
 
                 <a href="contacto.html">
                     Contacto
@@ -147,13 +144,11 @@
 
 
     <!-- =====================================================
-         BANNER PRINCIPAL / CARROSSEL
+         BANNER PRINCIPAL
     ====================================================== -->
 
     <section class="hero-banner">
 
-
-        <!-- BANNER 01 -->
 
         <div
             class="hero-slide active"
@@ -161,15 +156,11 @@
         ></div>
 
 
-        <!-- BANNER 02 -->
-
         <div
             class="hero-slide"
             style="background-image: url('capas/banner/banner-01.png');"
         ></div>
 
-
-        <!-- BANNER 03 -->
 
         <div
             class="hero-slide"
@@ -177,45 +168,23 @@
         ></div>
 
 
-        <!-- BANNER 04 -->
-
-        <div
-            class="hero-slide"
-            style="background-image: url('capas/banner/banner-03.jpg');"
-        ></div>
-
-         <!-- BANNER 05 -->
-
         <div
             class="hero-slide"
             style="background-image: url('capas/banner/banner-04.png');"
         ></div>
-
-         <!-- BANNER 06 -->
+         
+        <div
+            class="hero-slide"
+            style="background-image: url('capas/banner/banner-03.jpg');"
+        ></div>
 
         <div
             class="hero-slide"
             style="background-image: url('capas/banner/banner-02.jpg');"
         ></div>
 
-        <!--
-            PARA ADICIONAR MAIS BANNERS:
-
-            <div
-                class="hero-slide"
-                style="background-image: url('capas/banner/banner-05.jpg');"
-            ></div>
-
-            O JavaScript cria os indicadores automaticamente.
-        -->
-
-
-        <!-- ESCURECIMENTO DO BANNER -->
-
         <div class="hero-overlay"></div>
 
-
-        <!-- CONTEÚDO DO BANNER -->
 
         <div class="container hero-content">
 
@@ -235,7 +204,6 @@
 
                 <p>
                     Descubra novas músicas, artistas e sons.
-                    <br>
                     Ouça online e encontre seus artistas favoritos.
                 </p>
 
@@ -252,7 +220,8 @@
         </div>
 
 
-        <!-- INDICADORES -->
+
+        <!-- Indicadores -->
 
         <div
             class="hero-dots"
@@ -260,7 +229,8 @@
         ></div>
 
 
-        <!-- SETA ANTERIOR -->
+
+        <!-- Setas -->
 
         <button
             class="hero-arrow hero-prev"
@@ -270,8 +240,6 @@
             ‹
         </button>
 
-
-        <!-- SETA PRÓXIMA -->
 
         <button
             class="hero-arrow hero-next"
@@ -296,8 +264,6 @@
 
         <div class="container">
 
-
-            <!-- CABEÇALHO DO CATÁLOGO -->
 
             <div class="catalog-header">
 
@@ -326,7 +292,8 @@
                 </div>
 
 
-                <!-- PESQUISA -->
+
+                <!-- Pesquisa -->
 
                 <div class="search-box">
 
@@ -340,7 +307,6 @@
                         id="searchInput"
                         placeholder="Pesquisar música ou artista..."
                         autocomplete="off"
-                        aria-label="Pesquisar música ou artista"
                     >
 
                 </div>
@@ -349,9 +315,7 @@
 
 
 
-            <!-- =================================================
-                 TUAS MÚSICAS
-            ================================================== -->
+            <!-- Tuas músicas -->
 
             <div
                 id="musicGrid"
@@ -360,9 +324,7 @@
 
 
 
-            <!-- =================================================
-                 NENHUM RESULTADO
-            ================================================== -->
+            <!-- Nenhum resultado -->
 
             <div
                 id="noResults"
@@ -394,6 +356,189 @@
 
 
     <!-- =====================================================
+         NOTÍCIAS E CULTURA MUSICAL
+    ====================================================== -->
+
+    <section
+        id="noticias"
+        style="
+            padding: 80px 0;
+            background: #080b12;
+        "
+    >
+
+        <div class="container">
+
+
+            <div
+                style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:flex-end;
+                    gap:30px;
+                    margin-bottom:35px;
+                    flex-wrap:wrap;
+                "
+            >
+
+                <div>
+
+                    <span class="section-label">
+                        NOTÍCIAS
+                    </span>
+
+
+                    <h2
+                        style="
+                            margin:10px 0;
+                        "
+                    >
+                        Notícias e Cultura Musical
+                    </h2>
+
+
+                    <p
+                        style="
+                            max-width:650px;
+                            line-height:1.7;
+                            opacity:.8;
+                        "
+                    >
+                        Descubra histórias, informações e conteúdos
+                        sobre música angolana, artistas, géneros musicais
+                        e a evolução da música na era digital.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="noticias.html"
+                    style="
+                        display:inline-block;
+                        padding:12px 20px;
+                        border-radius:8px;
+                        text-decoration:none;
+                        font-weight:600;
+                        background:#635bff;
+                        color:#fff;
+                    "
+                >
+                    Ver todas as notícias →
+                </a>
+
+            </div>
+
+
+
+            <!-- NOTÍCIA PRINCIPAL -->
+
+            <article
+                style="
+                    display:grid;
+                    grid-template-columns:repeat(2,minmax(0,1fr));
+                    gap:30px;
+                    background:#111722;
+                    border:1px solid rgba(255,255,255,.08);
+                    border-radius:18px;
+                    overflow:hidden;
+                "
+            >
+
+
+                <div>
+
+                    <img
+                        src="capas/noticia-musica-angolana.jpg"
+                        alt="História da música angolana"
+                        style="
+                            width:100%;
+                            height:100%;
+                            min-height:300px;
+                            object-fit:cover;
+                            display:block;
+                        "
+                    >
+
+                </div>
+
+
+
+                <div
+                    style="
+                        padding:35px;
+                        display:flex;
+                        flex-direction:column;
+                        justify-content:center;
+                    "
+                >
+
+                    <span
+                        style="
+                            font-size:13px;
+                            font-weight:700;
+                            letter-spacing:1px;
+                            color:#635bff;
+                            text-transform:uppercase;
+                        "
+                    >
+                        Cultura Musical
+                    </span>
+
+
+                    <h3
+                        style="
+                            font-size:30px;
+                            line-height:1.2;
+                            margin:14px 0;
+                        "
+                    >
+                        A história da música angolana:
+                        dos ritmos tradicionais à era digital
+                    </h3>
+
+
+                    <p
+                        style="
+                            line-height:1.7;
+                            opacity:.8;
+                            margin-bottom:20px;
+                        "
+                    >
+                        Conheça um pouco da evolução da música
+                        angolana, desde os ritmos tradicionais
+                        até à transformação provocada pela
+                        tecnologia e pela Internet.
+                    </p>
+
+
+                    <a
+                        href="artigo-musica-angolana.html"
+                        style="
+                            display:inline-block;
+                            width:max-content;
+                            padding:12px 20px;
+                            border-radius:8px;
+                            text-decoration:none;
+                            font-weight:600;
+                            background:#635bff;
+                            color:#fff;
+                        "
+                    >
+                        Ler artigo →
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
          YOUTUBE
     ====================================================== -->
 
@@ -404,8 +549,6 @@
 
         <div class="container">
 
-
-            <!-- CABEÇALHO -->
 
             <div class="spotify-header">
 
@@ -432,9 +575,7 @@
 
 
 
-            <!-- =================================================
-                 ESTADO INICIAL
-            ================================================== -->
+            <!-- ESTADO INICIAL -->
 
             <div
                 id="spotifyInitial"
@@ -461,9 +602,7 @@
 
 
 
-            <!-- =================================================
-                 CARREGANDO
-            ================================================== -->
+            <!-- CARREGANDO -->
 
             <div
                 id="spotifyLoading"
@@ -487,9 +626,7 @@
 
 
 
-            <!-- =================================================
-                 RESULTADOS DO YOUTUBE
-            ================================================== -->
+            <!-- RESULTADOS -->
 
             <div
                 id="spotifyResults"
@@ -498,9 +635,7 @@
 
 
 
-            <!-- =================================================
-                 SEM RESULTADOS
-            ================================================== -->
+            <!-- SEM RESULTADOS -->
 
             <div
                 id="spotifyNoResults"
@@ -526,9 +661,7 @@
 
 
 
-            <!-- =================================================
-                 ERRO
-            ================================================== -->
+            <!-- ERRO -->
 
             <div
                 id="spotifyError"
@@ -555,15 +688,14 @@
 
 
 
-            <!-- =================================================
-                 ATRIBUIÇÃO
-            ================================================== -->
+            <!-- ATRIBUIÇÃO -->
 
             <div class="spotify-attribution">
 
                 <span class="spotify-logo-text">
                     YouTube
                 </span>
+
 
                 <span>
                     Os resultados são fornecidos pelo YouTube.
@@ -583,12 +715,11 @@
 
     <footer class="site-footer">
 
+
         <div class="container footer-content">
 
 
-            <!-- =================================================
-                 MARCA
-            ================================================== -->
+            <!-- MARCA -->
 
             <div class="footer-brand">
 
@@ -600,6 +731,7 @@
                     <span class="logo-icon">
                         ♪
                     </span>
+
 
                     <span>
                         Zero<span class="logo-highlight">
@@ -620,9 +752,7 @@
 
 
 
-            <!-- =================================================
-                 NAVEGAÇÃO
-            ================================================== -->
+            <!-- NAVEGAÇÃO -->
 
             <div class="footer-column">
 
@@ -646,6 +776,11 @@
                 </a>
 
 
+                <a href="noticias.html">
+                    Notícias
+                </a>
+
+
                 <a href="sobre.html">
                     Sobre nós
                 </a>
@@ -659,9 +794,7 @@
 
 
 
-            <!-- =================================================
-                 INFORMAÇÕES
-            ================================================== -->
+            <!-- INFORMAÇÕES -->
 
             <div class="footer-column">
 
@@ -688,9 +821,7 @@
 
 
 
-            <!-- =================================================
-                 CONTACTO
-            ================================================== -->
+            <!-- CONTACTO -->
 
             <div class="footer-column">
 
@@ -716,20 +847,16 @@
 
 
 
-        <!-- =================================================
-             PARTE INFERIOR
-        ================================================== -->
+        <!-- PARTE INFERIOR -->
 
         <div class="container footer-bottom">
 
             <p>
 
                 ©
+                <span id="currentYear"></span>
 
-                <span id="currentYear">
-                </span>
-
-                Zero Game.
+                Zero Game
 
                 Todos os direitos reservados.
 
@@ -739,11 +866,7 @@
             <p>
 
                 Desenvolvido por
-
-                <strong>
-                    Sérgio Cassanje
-                </strong>
-
+                <strong>Sérgio Cassanje</strong>
                 — Desenvolvedor Web
 
             </p>
@@ -763,7 +886,7 @@
 
 
     <!-- =====================================================
-         FUNCIONAMENTO DO SITE + YOUTUBE + CARROSSEL
+         FUNCIONAMENTO DO SITE + YOUTUBE
     ====================================================== -->
 
     <script src="assets/js/app.js"></script>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Notícias e Cultura Musical — Zero Game</title>
+
+    <meta name="description"
+        content="Notícias, histórias, curiosidades e conteúdos sobre música angolana, africana e cultura musical no Zero Game.">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .news-section {
+            padding: 70px 0 90px;
+        }
+
+        .news-header {
+            max-width: 760px;
+            margin-bottom: 45px;
+        }
+
+        .news-header span {
+            display: inline-block;
+            margin-bottom: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: .7;
+        }
+
+        .news-header h1 {
+            margin: 0 0 18px;
+            font-size: 46px;
+            line-height: 1.1;
+        }
+
+        .news-header p {
+            margin: 0;
+            font-size: 17px;
+            line-height: 1.7;
+            opacity: .8;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .news-card {
+            overflow: hidden;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .08);
+            transition: transform .25s ease, border-color .25s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 91, 255, .55);
+        }
+
+        .news-card-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+        }
+
+        .news-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .news-card-content {
+            padding: 24px;
+        }
+
+        .news-date {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 13px;
+            opacity: .6;
+        }
+
+        .news-card h2 {
+            margin: 0 0 12px;
+            font-size: 22px;
+            line-height: 1.3;
+        }
+
+        .news-card p {
+            margin: 0 0 20px;
+            font-size: 15px;
+            line-height: 1.65;
+            opacity: .75;
+        }
+
+        .news-button {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-weight: 600;
+            background: #635bff;
+            color: white;
+        }
+
+        .news-button:hover {
+            opacity: .9;
+        }
+
+        @media (max-width: 900px) {
+            .news-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .news-header h1 {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .news-section {
+                padding: 50px 0 65px;
+            }
+
+            .news-header h1 {
+                font-size: 34px;
+            }
+
+            .news-header p {
+                font-size: 15px;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+
+    <header class="site-header">
+
+        <div class="container header-content">
+
+            <a href="index.html" class="logo">
+                <span class="logo-icon">♪</span>
+                <span>Zero <strong>Game</strong></span>
+            </a>
+
+            <nav class="main-nav">
+
+                <a href="index.html">Início</a>
+
+                <a href="index.html#musicas">Músicas</a>
+
+                <a href="index.html#youtube">YouTube</a>
+
+                <a href="noticias.html">Notícias</a>
+
+                <a href="sobre.html">Sobre</a>
+
+                <a href="contacto.html">Contacto</a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- NOTÍCIAS -->
+
+    <main>
+
+        <section class="news-section">
+
+            <div class="container">
+
+                <div class="news-header">
+
+                    <span>Zero Game</span>
+
+                    <h1>Notícias e Cultura Musical</h1>
+
+                    <p>
+                        Histórias, curiosidades e conteúdos sobre música
+                        angolana, africana e o universo musical.
+                    </p>
+
+                </div>
+
+
+                <div class="news-grid">
+
+
+                    <!-- ARTIGO 1 -->
+
+                    <article class="news-card">
+
+                        <div class="news-card-image">
+
+                            <img
+                                src="capas/noticia-musica-angolana.jpg"
+                                alt="Música angolana e cultura musical">
+
+                        </div>
+
+                        <div class="news-card-content">
+
+                            <span class="news-date">
+                                15 de setembro de 2026
+                            </span>
+
+                            <h2>
+                                A história da música angolana:
+                                dos ritmos tradicionais à era digital
+                            </h2>
+
+                            <p>
+                                Conheça alguns dos caminhos que marcaram a
+                                evolução da música angolana e a sua presença
+                                na era digital.
+                            </p>
+
+                            <a
+                                href="artigo-musica-angolana.html"
+                                class="news-button">
+                                Ler artigo
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- FUTURO ARTIGO -->
+
+                    <article class="news-card">
+
+                        <div class="news-card-image">
+
+                            <img
+                                src="capas/noticia-kizomba.jpg"
+                                alt="Kizomba e música africana">
+
+                        </div>
+
+                        <div class="news-card-content">
+
+                            <span class="news-date">
+                                Em breve
+                            </span>
+
+                            <h2>
+                                Kizomba: origem e influência
+                                na música africana
+                            </h2>
+
+                            <p>
+                                Um novo conteúdo sobre a história,
+                                características e influência da Kizomba.
+                            </p>
+
+                            <a
+                                href="#"
+                                class="news-button">
+                                Em breve
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- FUTURO ARTIGO -->
+
+                    <article class="news-card">
+
+                        <div class="news-card-image">
+
+                            <img
+                                src="capas/noticia-kuduro.jpg"
+                                alt="Kuduro e cultura musical angolana">
+
+                        </div>
+
+                        <div class="news-card-content">
+
+                            <span class="news-date">
+                                Em breve
+                            </span>
+
+                            <h2>
+                                Kuduro e a transformação
+                                da música angolana
+                            </h2>
+
+                            <p>
+                                Uma análise sobre o género musical e a sua
+                                importância na cultura contemporânea.
+                            </p>
+
+                            <a
+                                href="#"
+                                class="news-button">
+                                Em breve
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- RODAPÉ -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-content">
+
+
+            <div class="footer-brand">
+
+                <div class="logo">
+
+                    <span class="logo-icon">♪</span>
+
+                    <span>
+                        Zero <strong>Game</strong>
+                    </span>
+
+                </div>
+
+                <p>
+                    Música para ouvir, descobrir e acompanhar.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h3>Navegação</h3>
+
+                <a href="index.html">Início</a>
+
+                <a href="index.html#musicas">Músicas</a>
+
+                <a href="noticias.html">Notícias</a>
+
+                <a href="sobre.html">Sobre nós</a>
+
+                <a href="contacto.html">Contacto</a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h3>Informações</h3>
+
+                <a href="privacidade.html">
+                    Política de Privacidade
+                </a>
+
+                <a href="termos.html">
+                    Termos de Uso
+                </a>
+
+                <a href="direitos-autorais.html">
+                    Direitos Autorais
+                </a>
+
+            </div>
+
+
+            <div class="footer-contact">
+
+                <h3>Contacto</h3>
+
+                <p>
+                    Email:<br>
+                    sergiomarllen063@gmail.com
+                </p>
+
+                <p>
+                    Telefone:<br>
+                    +244 934 037 073
+                </p>
+
+                <p>
+                    +244 958 262 904
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <div class="container">
+
+                <p>
+                    © <span id="currentYear"></span> Zero Game.
+                    Todos os direitos reservados.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script>
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>
