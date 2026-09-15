@@ -1,12 +1,12 @@
 /* ==========================================================
    APP.JS
-   zerogame
+   ZEROGAME
 
    Funções:
    1. Mostrar músicas locais
    2. Pesquisar músicas locais
-   3. Pesquisar Spotify
-   4. Mostrar resultados Spotify
+   3. Pesquisar músicas no YouTube
+   4. Mostrar resultados do YouTube
    5. Controlar banner
    6. Atualizar ano do rodapé
 ========================================================== */
@@ -22,7 +22,7 @@ document.addEventListener(
 
         iniciarCatalogo();
 
-        iniciarSpotify();
+        iniciarYouTube();
 
         iniciarCarrossel();
 
@@ -30,7 +30,6 @@ document.addEventListener(
 
     }
 );
-
 
 
 /* ==========================================================
@@ -53,23 +52,22 @@ const currentYear =
     document.getElementById("currentYear");
 
 
-/* Spotify */
+/* YouTube */
 
-const spotifyInitial =
+const youtubeInitial =
     document.getElementById("spotifyInitial");
 
-const spotifyLoading =
+const youtubeLoading =
     document.getElementById("spotifyLoading");
 
-const spotifyResults =
+const youtubeResults =
     document.getElementById("spotifyResults");
 
-const spotifyNoResults =
+const youtubeNoResults =
     document.getElementById("spotifyNoResults");
 
-const spotifyError =
+const youtubeError =
     document.getElementById("spotifyError");
-
 
 
 /* ==========================================================
@@ -91,7 +89,6 @@ function escapeHTML(valor) {
         .replace(/'/g, "&#039;");
 
 }
-
 
 
 /* ==========================================================
@@ -129,7 +126,6 @@ function iniciarCatalogo() {
     );
 
 }
-
 
 
 /* ==========================================================
@@ -181,7 +177,6 @@ function pesquisarMusicasLocais(termo) {
     renderizarMusicas(resultados);
 
 }
-
 
 
 /* ==========================================================
@@ -301,12 +296,11 @@ function renderizarMusicas(lista) {
 }
 
 
-
 /* ==========================================================
-   SPOTIFY
+   YOUTUBE
 ========================================================== */
 
-function iniciarSpotify() {
+function iniciarYouTube() {
 
     if (!searchInput) {
         return;
@@ -334,7 +328,7 @@ function iniciarSpotify() {
 
             if (termo.length === 0) {
 
-                limparSpotify();
+                limparYouTube();
 
                 return;
             }
@@ -345,7 +339,6 @@ function iniciarSpotify() {
             */
 
             if (termo.length < 2) {
-
                 return;
             }
 
@@ -354,7 +347,7 @@ function iniciarSpotify() {
                 setTimeout(
                     function () {
 
-                        pesquisarSpotify(termo);
+                        pesquisarYouTube(termo);
 
                     },
                     600
@@ -366,28 +359,41 @@ function iniciarSpotify() {
 }
 
 
-
 /* ==========================================================
-   PESQUISAR NO SPOTIFY
+   PESQUISAR NO YOUTUBE
 ========================================================== */
 
-async function pesquisarSpotify(termo) {
+async function pesquisarYouTube(termo) {
 
-    mostrarSpotifyLoading();
+    mostrarYouTubeLoading();
 
 
     try {
 
         const resposta =
             await fetch(
-                `/.netlify/functions/spotify-search?q=${encodeURIComponent(termo)}`
+                `/.netlify/functions/youtube-search?q=${encodeURIComponent(termo)}`
             );
 
 
         if (!resposta.ok) {
 
+            const erroAPI =
+                await resposta.json().catch(
+                    function () {
+                        return {};
+                    }
+                );
+
+
+            console.error(
+                "Erro retornado pelo YouTube:",
+                erroAPI
+            );
+
+
             throw new Error(
-                "Erro na função Spotify."
+                "Erro na função YouTube."
             );
 
         }
@@ -399,26 +405,26 @@ async function pesquisarSpotify(termo) {
 
         if (
             !dados ||
-            !Array.isArray(dados.tracks)
+            !Array.isArray(dados.resultados)
         ) {
 
             throw new Error(
-                "Resposta inválida do Spotify."
+                "Resposta inválida do YouTube."
             );
 
         }
 
 
-        if (dados.tracks.length === 0) {
+        if (dados.resultados.length === 0) {
 
-            mostrarSpotifySemResultados();
+            mostrarYouTubeSemResultados();
 
             return;
         }
 
 
-        renderizarSpotify(
-            dados.tracks
+        renderizarYouTube(
+            dados.resultados
         );
 
     }
@@ -427,55 +433,71 @@ async function pesquisarSpotify(termo) {
     catch (erro) {
 
         console.error(
-            "Spotify:",
+            "YouTube:",
             erro
         );
 
 
-        mostrarSpotifyErro();
+        mostrarYouTubeErro();
 
     }
 
 }
 
 
-
 /* ==========================================================
    MOSTRAR CARREGANDO
 ========================================================== */
 
-function mostrarSpotifyLoading() {
+function mostrarYouTubeLoading() {
 
-    spotifyInitial.hidden = true;
+    if (youtubeInitial) {
+        youtubeInitial.hidden = true;
+    }
 
-    spotifyNoResults.hidden = true;
+    if (youtubeNoResults) {
+        youtubeNoResults.hidden = true;
+    }
 
-    spotifyError.hidden = true;
+    if (youtubeError) {
+        youtubeError.hidden = true;
+    }
 
-    spotifyResults.innerHTML = "";
+    if (youtubeResults) {
+        youtubeResults.innerHTML = "";
+    }
 
-    spotifyLoading.hidden = false;
+    if (youtubeLoading) {
+        youtubeLoading.hidden = false;
+    }
 
 }
 
 
-
 /* ==========================================================
-   RENDERIZAR SPOTIFY
+   RENDERIZAR YOUTUBE
 ========================================================== */
 
-function renderizarSpotify(lista) {
+function renderizarYouTube(lista) {
 
-    spotifyInitial.hidden = true;
+    if (youtubeInitial) {
+        youtubeInitial.hidden = true;
+    }
 
-    spotifyLoading.hidden = true;
+    if (youtubeLoading) {
+        youtubeLoading.hidden = true;
+    }
 
-    spotifyNoResults.hidden = true;
+    if (youtubeNoResults) {
+        youtubeNoResults.hidden = true;
+    }
 
-    spotifyError.hidden = true;
+    if (youtubeError) {
+        youtubeError.hidden = true;
+    }
 
 
-    spotifyResults.innerHTML = "";
+    youtubeResults.innerHTML = "";
 
 
     lista.forEach(
@@ -489,23 +511,12 @@ function renderizarSpotify(lista) {
                 "music-card spotify-card";
 
 
-            const artistas =
-                Array.isArray(musica.artistas)
-                    ? musica.artistas.join(", ")
-                    : musica.artista || "Artista";
-
-
-            const imagem =
-                musica.imagem ||
-                "capas/sem-capa.jpg";
-
-
             card.innerHTML = `
 
                 <div class="spotify-cover">
 
                     <img
-                        src="${escapeHTML(imagem)}"
+                        src="${escapeHTML(musica.capa)}"
                         alt="Capa de ${escapeHTML(musica.titulo)}"
                         loading="lazy"
                     >
@@ -521,14 +532,17 @@ function renderizarSpotify(lista) {
 
 
                     <p class="music-artist">
-                        ${escapeHTML(artistas)}
+
+                        ${escapeHTML(musica.canal || "YouTube")}
+
                     </p>
 
 
                     <p class="music-description">
 
-                        Álbum:
-                        ${escapeHTML(musica.album || "Desconhecido")}
+                        ${escapeHTML(
+                            musica.descricao || "Vídeo disponível no YouTube."
+                        )}
 
                     </p>
 
@@ -541,7 +555,7 @@ function renderizarSpotify(lista) {
                             rel="noopener noreferrer"
                             class="btn-spotify"
                         >
-                            ● Ouvir no Spotify
+                            ▶ Ouvir no YouTube
                         </a>
 
                     </div>
@@ -551,86 +565,118 @@ function renderizarSpotify(lista) {
             `;
 
 
-            spotifyResults.appendChild(card);
+            youtubeResults.appendChild(card);
 
         }
     );
 
 
     /*
-        Levamos o usuário para a seção Spotify
-        quando a pesquisa é realizada.
+        Levar o usuário para a seção
+        dos resultados.
     */
 
-    document
-        .getElementById("spotify")
-        .scrollIntoView({
+    const secaoYouTube =
+        document.getElementById("spotify");
+
+
+    if (secaoYouTube) {
+
+        secaoYouTube.scrollIntoView({
             behavior: "smooth",
             block: "start"
         });
 
-}
+    }
 
+}
 
 
 /* ==========================================================
-   SEM RESULTADOS SPOTIFY
+   SEM RESULTADOS YOUTUBE
 ========================================================== */
 
-function mostrarSpotifySemResultados() {
+function mostrarYouTubeSemResultados() {
 
-    spotifyInitial.hidden = true;
+    if (youtubeInitial) {
+        youtubeInitial.hidden = true;
+    }
 
-    spotifyLoading.hidden = true;
+    if (youtubeLoading) {
+        youtubeLoading.hidden = true;
+    }
 
-    spotifyError.hidden = true;
+    if (youtubeError) {
+        youtubeError.hidden = true;
+    }
 
-    spotifyResults.innerHTML = "";
+    if (youtubeResults) {
+        youtubeResults.innerHTML = "";
+    }
 
-    spotifyNoResults.hidden = false;
+    if (youtubeNoResults) {
+        youtubeNoResults.hidden = false;
+    }
 
 }
-
 
 
 /* ==========================================================
-   ERRO SPOTIFY
+   ERRO YOUTUBE
 ========================================================== */
 
-function mostrarSpotifyErro() {
+function mostrarYouTubeErro() {
 
-    spotifyInitial.hidden = true;
+    if (youtubeInitial) {
+        youtubeInitial.hidden = true;
+    }
 
-    spotifyLoading.hidden = true;
+    if (youtubeLoading) {
+        youtubeLoading.hidden = true;
+    }
 
-    spotifyNoResults.hidden = true;
+    if (youtubeNoResults) {
+        youtubeNoResults.hidden = true;
+    }
 
-    spotifyResults.innerHTML = "";
+    if (youtubeResults) {
+        youtubeResults.innerHTML = "";
+    }
 
-    spotifyError.hidden = false;
+    if (youtubeError) {
+        youtubeError.hidden = false;
+    }
 
 }
-
 
 
 /* ==========================================================
-   LIMPAR SPOTIFY
+   LIMPAR YOUTUBE
 ========================================================== */
 
-function limparSpotify() {
+function limparYouTube() {
 
-    spotifyLoading.hidden = true;
+    if (youtubeLoading) {
+        youtubeLoading.hidden = true;
+    }
 
-    spotifyNoResults.hidden = true;
+    if (youtubeNoResults) {
+        youtubeNoResults.hidden = true;
+    }
 
-    spotifyError.hidden = true;
+    if (youtubeError) {
+        youtubeError.hidden = true;
+    }
 
-    spotifyResults.innerHTML = "";
+    if (youtubeResults) {
+        youtubeResults.innerHTML = "";
+    }
 
-    spotifyInitial.hidden = false;
+    if (youtubeInitial) {
+        youtubeInitial.hidden = false;
+    }
 
 }
-
 
 
 /* ==========================================================
@@ -898,7 +944,6 @@ function iniciarCarrossel() {
 }
 
 
-
 /* ==========================================================
    ANO AUTOMÁTICO
 ========================================================== */
@@ -913,4 +958,3 @@ function atualizarAno() {
     }
 
 }
-

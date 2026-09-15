@@ -12,7 +12,7 @@
 
     <meta
         name="description"
-        content="Zerogame — ouça, descubra e baixe músicas."
+        content="ZeroGame — ouça, descubra e baixe músicas."
     >
 
     <title>ZEROGAME</title>
@@ -62,8 +62,8 @@
                     Músicas
                 </a>
 
-                <a href="#spotify">
-                    Spotify
+                <a href="#youtube">
+                    YouTube
                 </a>
 
             </nav>
@@ -98,26 +98,22 @@
             style="background-image: url('capas/banner/banner-03.jpg');"
         ></div>
 
-         <div
-                class="hero-slide"
-                style="background-image: url('capas/banner/banner-04.png');"
+
+        <div
+            class="hero-slide"
+            style="background-image: url('capas/banner/banner-04.png');"
         ></div>
+
 
         <!--
             PARA ADICIONAR MAIS BANNERS:
 
             <div
                 class="hero-slide"
-                style="background-image: url('capas/banner/banner-04.jpg');"
-            ></div>
-
-            <div
-                class="hero-slide"
                 style="background-image: url('capas/banner/banner-05.jpg');"
             ></div>
 
-            Não precisas adicionar os indicadores manualmente.
-            O JavaScript cria-os automaticamente.
+            O JavaScript cria os indicadores automaticamente.
         -->
 
 
@@ -142,7 +138,7 @@
 
                 <p>
                     Descubra novas músicas, artistas e sons.
-                    Ouça online e baixe suas músicas favoritas.
+                    Ouça online e encontre seus artistas favoritos.
                 </p>
 
 
@@ -241,7 +237,7 @@
                     <input
                         type="search"
                         id="searchInput"
-                        placeholder="Pesquisar música, artista ou gênero..."
+                        placeholder="Pesquisar música ou artista..."
                         autocomplete="off"
                     >
 
@@ -270,7 +266,7 @@
                 hidden
             >
 
-                <div class= "no-results-icon">
+                <div class="no-results-icon">
                     🎵
                 </div>
 
@@ -295,11 +291,11 @@
 
 
     <!-- =====================================================
-         SPOTIFY
+         YOUTUBE
     ====================================================== -->
 
     <section
-        id="spotify"
+        id="youtube"
         class="spotify-section"
     >
 
@@ -311,7 +307,7 @@
                 <div>
 
                     <span class="spotify-label">
-                        SPOTIFY
+                        YOUTUBE
                     </span>
 
 
@@ -321,7 +317,7 @@
 
 
                     <p>
-                        Pesquise no catálogo do Spotify
+                        Pesquise músicas e artistas no YouTube
                         usando a caixa de pesquisa acima.
                     </p>
 
@@ -331,7 +327,9 @@
 
 
 
-            <!-- Estado inicial -->
+            <!-- =================================================
+                 ESTADO INICIAL
+            ================================================== -->
 
             <div
                 id="spotifyInitial"
@@ -351,14 +349,16 @@
                 <p>
                     Digite o nome de uma música ou artista
                     na pesquisa acima para encontrar resultados
-                    do Spotify.
+                    no YouTube.
                 </p>
 
             </div>
 
 
 
-            <!-- Carregando -->
+            <!-- =================================================
+                 CARREGANDO
+            ================================================== -->
 
             <div
                 id="spotifyLoading"
@@ -370,7 +370,7 @@
 
 
                 <h3>
-                    Pesquisando no Spotify...
+                    Pesquisando no YouTube...
                 </h3>
 
 
@@ -382,7 +382,9 @@
 
 
 
-            <!-- Resultados -->
+            <!-- =================================================
+                 RESULTADOS
+            ================================================== -->
 
             <div
                 id="spotifyResults"
@@ -391,7 +393,9 @@
 
 
 
-            <!-- Sem resultados -->
+            <!-- =================================================
+                 SEM RESULTADOS
+            ================================================== -->
 
             <div
                 id="spotifyNoResults"
@@ -417,7 +421,9 @@
 
 
 
-            <!-- Erro -->
+            <!-- =================================================
+                 ERRO
+            ================================================== -->
 
             <div
                 id="spotifyError"
@@ -431,12 +437,12 @@
 
 
                 <h3>
-                    Não foi possível pesquisar no Spotify
+                    Não foi possível pesquisar no YouTube
                 </h3>
 
 
                 <p>
-                    Verifique a configuração da função do Spotify
+                    Verifique a configuração da API do YouTube
                     no Netlify.
                 </p>
 
@@ -444,16 +450,18 @@
 
 
 
-            <!-- Aviso/atribuição -->
+            <!-- =================================================
+                 ATRIBUIÇÃO
+            ================================================== -->
 
             <div class="spotify-attribution">
 
                 <span class="spotify-logo-text">
-                    Spotify
+                    YouTube
                 </span>
 
                 <span>
-                    Resultados e conteúdo pertencem ao Spotify.
+                    Os resultados são fornecidos pelo YouTube.
                 </span>
 
             </div>
@@ -497,7 +505,7 @@
                 <p>
                     Música, descoberta e entretenimento.
                     <br>
-                    Ouça online e baixe suas músicas favoritas.
+                    Ouça online e descubra novos artistas.
                 </p>
 
             </div>
@@ -521,8 +529,8 @@
                 </a>
 
 
-                <a href="#spotify">
-                    Spotify
+                <a href="#youtube">
+                    YouTube
                 </a>
 
             </div>
@@ -543,6 +551,7 @@
 
                 <p>
                     +244 934037073
+                    <br>
                     +244 958262904
                 </p>
 
@@ -565,7 +574,13 @@
                 Todos os direitos reservados.
 
             </p>
-            <p>Desenvolvido por <strong>Sérgio Cassanje</strong> Desenvolvidor web</p>
+
+
+            <p>
+                Desenvolvido por
+                <strong>Sérgio Cassanje</strong>
+                — Desenvolvedor Web
+            </p>
 
         </div>
 
@@ -582,7 +597,7 @@
 
 
     <!-- =====================================================
-         FUNCIONAMENTO DO SITE + SPOTIFY
+         FUNCIONAMENTO DO SITE + YOUTUBE
     ====================================================== -->
 
     <script src="assets/js/app.js"></script>
@@ -591,4 +606,3 @@
 </body>
 
 </html>
-
